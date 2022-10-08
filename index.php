@@ -1,24 +1,50 @@
-<?php
- 
-// Function to get the client IP address
-function get_client_ip() {
-    $ipaddress = '';
-    if (isset($_SERVER['HTTP_CLIENT_IP']))
-        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if(isset($_SERVER['REMOTE_ADDR']))
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-    else
-        $ipaddress = 'UNKNOWN';
-    return $ipaddress;
+<?php 
+require('UserInfo.php');
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UserInfo Demo</title>
+	<style>
+table {
+	margin-top: 20px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
- 
- 
-echo "Your IP address is: " . get_client_ip();
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+h2{font-family: sans-serif,'Helvetica';}
+</style>
+
+</head>
+<body>
+<center><h2>UserInfo demo</h2></center>
+
+
+	<table>
+		<tr>
+			<th>Ip</th>
+			<th>Device</th>
+			<th>Os</th>
+			<th>Browser</th>
+		</tr>
+		<tr>
+			<td><?= UserInfo::get_ip();?></td>
+			<td><?= UserInfo::get_device();?></td>
+			<td><?= UserInfo::get_os();?></td>
+			<td><?= UserInfo::get_browser();?></td>
+		</tr>
+	</table>
+
+</body>
+</html>
