@@ -24,6 +24,7 @@ function get_client_ip() {
 get_client_ip();
 $ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
 $output = $ipdat->geoplugin_countryName;
+echo $output;
 if($output == "India"){
      echo "<h1>Access Granted</h1>\n";
      echo "<h1>Your IP address is</h1>" . get_client_ip();
