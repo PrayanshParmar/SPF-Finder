@@ -33,6 +33,7 @@ usage: python3 spf.py [-h] [-v] [-d] [-l] domain_name/input_file [-o] output_fil
 `$ python3 spf.py -l input_file`
 - Only support `.txt` Input_file extension.
 - file must contain only `domain name one by one.`
+
 ![image](https://user-images.githubusercontent.com/103236128/200896923-48c03dc6-098a-4a8a-af26-0b43aafc3ba1.png)
 
 ### For Bulk scan with output_file
