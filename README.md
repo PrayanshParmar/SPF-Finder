@@ -6,10 +6,10 @@ SPF-Finder is a python script to find spf record of a domain - it can find spf o
 1. You need python3, pip3, git
 
 2. Fork/Clone/Download this repo
-    `https://github.com/PrayanshParmar/SPF-Finder.git`
+   ```https://github.com/PrayanshParmar/SPF-Finder.git```
  
 3. Navigate to the directory
-    `cd SPF-Finder`
+   ```cd SPF-Finder```
 
 ## SPF_Finder -h
 ```
