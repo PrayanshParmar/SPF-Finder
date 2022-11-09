@@ -86,13 +86,15 @@ if args==1:
      
 elif args==2 and argv[1]=="-h" or argv[1]=="--help":
     print()
-    help='''-h, --help         Help section
+    help='''usage: python3 spf.py [-h] [-v] [-d] [-l] domain_name/input_file [-o] output_file
+------------------------------------------------------------------------------------------------    
+-h, --help         Help section
 -v, --version      Show version
 -d, --domain       for single domain
 -l, --inputfile    Input file of domain name (support only ".txt")
 -o, --outputfile   Output file name (support only ".txt")
-
-usage[]: python3 spf.py [options] domain_name '''
+------------------------------------------------------------------------------------------------
+ '''
     co.printout(help,co.CYAN)
 
 elif args==2 and argv[1]=="-v" or argv[1]=="--version":
