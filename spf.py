@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 import os 
 import sys
 from src import figlet 
 from src import colors as co 
 
+# --------------- Functions --------------- #
 def printintro():
     co.printout(figlet.ascii_work, co.BLUE)
     co.printout("\n[WRN]",co.YELLOW)
@@ -17,12 +20,12 @@ def spf_bulk(domain,read=" "):
  run=os.popen(com)
  read=run.read() 
  if '"v=spf1' in read:  
-    res0="(SPF record found) {}" 
+    res0="[SPF record found] {}" 
     res1=res0.format(domain) 
     co.printout(res1,co.GREEN) 
     return res1 
- elif "text" in read: 
-    res01="(SPF record not found) {}"
+ elif "text" in read:  
+    res01="[SPF record not found] {}"
     res1=res01.format(domain)  
     co.printout(res1,co.YELLOW) 
     return res1 
@@ -43,7 +46,7 @@ def spf_single(domain):
     co.printout("SPF record not found",co.YELLOW) 
 
  else:
-    co.printout("An error occured",co.RED)    
+    co.printout("An error occured!!",co.RED)    
     
  
 def read_write(path1,path2,length): 
@@ -75,53 +78,63 @@ def len_f(path1):
    return length 
    f.close() 
  
- 
-#__________________________________________Main___________________________________
+
+# -------------- Main -------------- # 
 args=len(sys.argv)
 argv=sys.argv
 
-if args==1:
-     print()
-     print('''-h, --help    for Help section''')
-     
-elif args==2 and argv[1]=="-h" or argv[1]=="--help":
-    print()
-    help='''usage: python3 spf.py [-h] [-v] [-d] [-l] domain_name/input_file [-o] output_file
-------------------------------------------------------------------------------------------------    
--h, --help         Help section
--v, --version      Show version
--d, --domain       for single domain
--l, --inputfile    Input file of domain name (support only ".txt")
--o, --outputfile   Output file name (support only ".txt")
+try:
+	if args==1:
+		print()
+		print('''-h, --help  for Help section''')
+
+	elif args==2 and argv[1]=="-h" or argv[1]=="--help":
+		print()
+		help='''Usage: python3 spf.py [-h] [-v] [-d] [-l] domain_name/input_file [-o] output_file
+------------------------------------------------------------------------------------------------
+Options:    
+       -h, --help         Help section
+       -v, --version      Show version
+       -d, --domain       for single domain
+       -l, --inputfile    Input file of domain name (support only ".txt" extension)
+       -o, --outputfile   Output file name (support only ".txt" extension)
 ------------------------------------------------------------------------------------------------
  '''
-    co.printout(help,co.CYAN)
+		co.printout(help,co.CYAN)				
 
-elif args==2 and argv[1]=="-v" or argv[1]=="--version":
-    co.printout('Version --> 1.0',co.CYAN)
+	elif args==2 and argv[1]=="-v" or argv[1]=="--version":
+		co.printout('Version --> 1.0',co.CYAN)
 
-elif args==3 and argv[1]=="-d" or argv[1]=="--domain":
-    domain=argv[2]
-    printintro()
-    spf_single(domain)
+	elif args==3 and argv[1]=="-d" or argv[1]=="--domain":
+		domain=argv[2]
+		printintro()
+		spf_single(domain)		
 
-elif args==3 and argv[1]=="-l" or argv[1]=="--inputfile":
-    path1=argv[2]
-    printintro()
-    length=len_f(path1)
-    read_print(path1,length)
+	elif args==3 and argv[1]=="-l" or argv[1]=="--inputfile":
+		path1=argv[2]
+		printintro()
 
-elif args==5 and argv[1]=="-l" or argv[1]=="--inputfile" and argv[3]=="-o" or argv[3]=="--outputfile":
-    path1=argv[2]
-    path2=argv[4]
-    printintro()
-    length=len_f(path1)
-    read_write(path1,path2,length)
+		try:
+			length=len_f(path1)
+			read_print(path1,length)
 
-else:
-    co.printout("Invalid operation!!",co.RED)
+		except (FileNotFoundError,FileExistsError):
+			co.printout("File Not Found Error!!",co.RED)
 
+	elif args==5 and argv[1]=="-l" or argv[1]=="--inputfile" and argv[3]=="-o" or argv[3]=="--outputfile":
+		path1=argv[2]
+		path2=argv[4]
+		printintro()
 
- 
+		try:
+			length=len_f(path1)
+			read_write(path1,path2,length)
 
-    
+		except (FileNotFoundError,FileExistsError):
+			co.printout("File Not Found Error!!",co.RED)
+	else:
+		co.printout("Invalid operation!!",co.RED)
+			
+except IndexError:
+	co.printout("Invalid operation!!",co.RED) 
+			
