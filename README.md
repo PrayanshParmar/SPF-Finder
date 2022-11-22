@@ -1,5 +1,5 @@
 # SPF-Finder
-SPF-Finder is a python script to find spf record of a domain - it can find spf of domain in bulk.
+SPF-Finder is a python script used to find spf record of a domain - it can find spf of domain in bulk.
 
 ![spf-finder](https://user-images.githubusercontent.com/103236128/200907370-ff25c116-6ef6-4762-bb43-991eef891684.png)
 
